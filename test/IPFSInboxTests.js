@@ -1,7 +1,7 @@
 const IPFSInbox = artifacts.require("./IPFSInbox.sol");
 
 contract("IPFSInbox", accounts => {
-  it("...should store the value 89.", async () => {
+  it("...should emit an event when you send an IPFS address.", async () => {
     const ipfsInbox = await IPFSInbox.deployed();
 
     eventEmitted = false
@@ -10,7 +10,6 @@ contract("IPFSInbox", accounts => {
             eventEmitted = true
         })
 
-    // Set value of 89
     await ipfsInbox.sendIPFS(accounts[1], "SampleAddress", { from: accounts[0] });
 
     assert.equal(eventEmitted, true, "Sending an IPFS request does not emit an event.");
